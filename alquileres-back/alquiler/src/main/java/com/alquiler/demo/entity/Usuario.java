@@ -27,6 +27,8 @@ public class Usuario {
     private String email;
     @NotBlank
     private String password;
+    private String foto;
+
     @ManyToMany
     private List<Rol> roles;
 
