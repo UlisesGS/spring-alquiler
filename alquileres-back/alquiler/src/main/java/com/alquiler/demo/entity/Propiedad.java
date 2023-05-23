@@ -16,6 +16,8 @@ public class Propiedad {
     private Long id;
 
     @NotBlank
+    @ManyToOne
+    @JoinColumn(name = "propietarios")
     private Usuario usuario;
 
     @NotBlank
@@ -28,5 +30,6 @@ public class Propiedad {
     private Double precio;
 
     @Column(name = "lista_clientes")
+    @ManyToMany
     private List<Usuario> listaCliente;
 }
