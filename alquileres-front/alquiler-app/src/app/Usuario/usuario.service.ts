@@ -15,7 +15,7 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.url)
   }
 
-
+/*
   save(usuario:Usuario) : Observable<Usuario>{
     return this.http.post<Usuario>(this.url, usuario, {headers: this.header}).pipe(
       map( (response: any) => response.usuario as Usuario ),
@@ -31,4 +31,8 @@ export class UsuarioService {
       })
     );
   }
+  */
+ save(usuario:Usuario):Observable<Usuario>{
+  return this.http.post<Usuario>(this.url,usuario);
+ }
 }

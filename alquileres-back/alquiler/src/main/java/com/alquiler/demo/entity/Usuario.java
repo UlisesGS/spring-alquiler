@@ -14,17 +14,17 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    private String username;
+    private String username;//
     @NotBlank
-    private String nombre;
+    private String nombre;//
     @NotBlank
-    private String apellido;
+    private String apellido;//
     @NotBlank
-    private String dni;
+    private String dni;//
     @NotBlank
-    private String telefono;
+    private String telefono;//
     @NotBlank
-    private String email;
+    private String email;//
     @NotBlank
     private String password;
     private String foto;

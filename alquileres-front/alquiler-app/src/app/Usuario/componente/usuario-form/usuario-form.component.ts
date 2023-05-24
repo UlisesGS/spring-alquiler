@@ -3,7 +3,7 @@ import { Usuario } from '../../usuario';
 import { UsuarioService } from '../../usuario.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { throwError } from 'rxjs';
+
 
 @Component({
   selector: 'app-usuario-form',
@@ -14,7 +14,7 @@ export class UsuarioFormComponent implements OnInit{
 
   titulo:string="Creacion de usuario";
   public usuario: Usuario=new Usuario();
-  public errores: string[];
+  public errores: any;
 
   constructor(private usuarioService: UsuarioService,
     private router: Router,){
@@ -22,7 +22,7 @@ export class UsuarioFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+   
   }
 
 
@@ -31,10 +31,19 @@ export class UsuarioFormComponent implements OnInit{
       this.router.navigate(['/usuarios'])
       Swal.fire('Nuevo usuario', `El usuario ${user.username} creado con exito`, 'success')
     },
-    err => {                          /*OPCIONAL: ESPECIFICAMOS DE QUE TIPO DE DATO ES*/ 
+    err => {
+      /*
+                    /*OPCIONAL: ESPECIFICAMOS DE QUE TIPO DE DATO ES
         this.errores = err.error.errors as string[];
         console.error('Codigo del error desde el backend: '+ err.status);
         console.error(err.error.errors);
+       */
+      if(err.status==404){
+        console.log(err);
+       this.errores=err.error;
+        Swal.fire('Error: ', `Error al crear el Usuario  el error es ${err.message}`,'error')
+
+      }
       }
     );
   }
