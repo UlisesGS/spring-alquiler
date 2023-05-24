@@ -7,12 +7,14 @@ import { ListaComponent } from './Usuario/componente/lista/lista.component';
 import { NavBarComponent } from './componente/nav-bar/nav-bar.component';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
+import { UsuarioFormComponent } from './Usuario/componente/usuario-form/usuario-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaComponent,
     NavBarComponent,
+    UsuarioFormComponent,
 
   ],
   imports: [
