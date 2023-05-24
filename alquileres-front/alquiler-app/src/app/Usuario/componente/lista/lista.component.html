@@ -1,0 +1,33 @@
+<h2>{{titulo}}</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Username</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">telefono</th>
+      <th scope="col">Email</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td>{{usuario.id}}</td>
+      <td>{{usuario.username}}</td>
+      <td>{{usuario.nombre}}</td>
+      <td>{{usuario.apellido}}</td>
+      <td>{{usuario.telefono}}</td>
+      <td>{{usuario.email}}</td>
+      <td>
+        <button class="btn btn-primary btn-sm">Editar</button>
+      </td>
+      <td>
+        <button class="btn btn-danger btn-sm">Editar</button>
+      </td>
+
+
+    </tr>
+  </tbody>
+</table>

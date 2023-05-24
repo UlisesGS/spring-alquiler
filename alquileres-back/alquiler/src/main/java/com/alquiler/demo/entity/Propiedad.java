@@ -16,8 +16,13 @@ public class Propiedad {
     private Long id;
 
     @NotBlank
+<<<<<<< HEAD
     @JoinColumn(name = "propietarios")
     @ManyToOne
+=======
+    @ManyToOne
+    @JoinColumn(name = "propietarios")
+>>>>>>> 26c26e60a59b4841a75f17eeb3e6ffa29f75f25d
     private Usuario usuario;
 
     @NotBlank
