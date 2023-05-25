@@ -85,10 +85,10 @@
 
             <div class="form-group">
                 <div class="col-sm-6">
+                
+                    <button class="btn btn-primary" (click)="save()" *ngIf="!usuario.id">Crear</button>
 
-                    <button class="btn btn-primary" (click)="save()" *ngIf="!usuario.id  || usuario.id!=undefined ">Crear</button>
-
-                        <button class="btn btn-primary" role="button" (click)='update()'*ngIf="usuario.id " >Editar</button>
+                    <button class="btn btn-primary" (click)="update()" *ngIf="usuario.id">Editar</button>
 
                 </div>
             </div>

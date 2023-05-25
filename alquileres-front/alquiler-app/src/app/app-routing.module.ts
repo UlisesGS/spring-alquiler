@@ -5,7 +5,8 @@ import { UsuarioFormComponent } from './Usuario/componente/usuario-form/usuario-
 
 const routes: Routes = [
   {path:'usuarios',component:ListaComponent},
-  {path:'usuarios/form',component:UsuarioFormComponent}
+  {path:'usuarios/form',component:UsuarioFormComponent},
+  {path:'usuarios/form/:id',component:UsuarioFormComponent}
 ];
 
 @NgModule({

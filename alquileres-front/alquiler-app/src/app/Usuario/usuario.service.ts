@@ -35,4 +35,14 @@ export class UsuarioService {
  save(usuario:Usuario):Observable<Usuario>{
   return this.http.post<Usuario>(this.url,usuario);
  }
+ 
+
+ findById(id:number): Observable<Usuario>{
+  return this.http.get<Usuario>(`${this.url}/${id}`);
+ }
+
+
+ update(usuario: Usuario): Observable<Usuario>{
+  return this.http.put<Usuario>(`${this.url}/${usuario.id}`, usuario, {headers: this.header});
+ }
 }
