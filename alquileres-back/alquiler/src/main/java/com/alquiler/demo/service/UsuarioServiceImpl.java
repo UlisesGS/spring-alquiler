@@ -35,8 +35,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario save(Usuario usuario) {
-    Rol rol = rolRepositorio.findByNombre("ROLE_USER");
-    usuario.setRoles(Arrays.asList(rol));
+    /*Rol rol = rolRepositorio.findByNombre("ROLE_USER");
+    usuario.setRoles(Arrays.asList(rol));*/
         return repositirio.save(usuario);
     }
 

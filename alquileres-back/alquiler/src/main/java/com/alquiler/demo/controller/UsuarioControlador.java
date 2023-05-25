@@ -61,14 +61,20 @@ public class UsuarioControlador {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> editar(@Valid @RequestBody Usuario usuario, BindingResult result, @PathVariable Long id) {
+
         if (result.hasErrors()) {
             return this.validar(result);
         }
+
         Optional<Usuario> o = service.findById(id);
         if (o.isPresent()) {
+
             Usuario usuarioDb = o.get();
+
             usuarioDb.setNombre(usuario.getNombre());
             usuarioDb.setApellido(usuario.getApellido());
+
+            System.out.println(usuarioDb);
             return ResponseEntity.status(HttpStatus.CREATED).body(service.save(usuarioDb));
         }
         return ResponseEntity.notFound().build();

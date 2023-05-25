@@ -35,7 +35,17 @@ export class UsuarioService {
  save(usuario:Usuario):Observable<Usuario>{
   return this.http.post<Usuario>(this.url,usuario);
  }
+ 
  eliminar(id:number):Observable<void>{
   return this.http.delete<void>(`${this.url}/${id}`);
+ }
+
+ findById(id:number): Observable<Usuario>{
+  return this.http.get<Usuario>(`${this.url}/${id}`);
+ }
+
+
+ update(usuario: Usuario): Observable<Usuario>{
+  return this.http.put<Usuario>(`${this.url}/${usuario.id}`, usuario, {headers: this.header});
  }
 }

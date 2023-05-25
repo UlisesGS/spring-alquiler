@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../usuario';
 import { UsuarioService } from '../../usuario.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 
@@ -17,12 +17,23 @@ export class UsuarioFormComponent implements OnInit{
   public errores: any;
 
   constructor(private usuarioService: UsuarioService,
-    private router: Router,){
+    private router: Router,
+    private activatedRoute: ActivatedRoute){
 
   }
 
   ngOnInit(): void {
-   
+    this.activatedRoute.paramMap.subscribe( params => {
+      let id: number = +params.get('id');
+
+      if(id){
+        this.titulo="Editar usuario"
+        this.usuarioService.findById(id).subscribe( data => {
+          this.usuario=data;
+        });
+        
+      }
+  });
   }
 
 
@@ -46,5 +57,24 @@ export class UsuarioFormComponent implements OnInit{
       }
       }
     );
+  }
+
+
+  update(): void{
+    this.usuarioService.update(this.usuario).subscribe(user =>{
+      
+      this.router.navigate(['/usuarios'])
+      
+      Swal.fire('Actualizado con exito', `El usuario ${user.username} actualizado correctamente`, 'success')
+    },
+    err => {
+      if(err.status==404){
+        console.log(err);
+       this.errores=err.error;
+        Swal.fire('Error: ', `Error al editar el Usuario  el error es ${err.message}`,'error')
+
+      }
+      }
+    )
   }
 }
