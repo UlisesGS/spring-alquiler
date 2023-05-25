@@ -17,7 +17,7 @@ usuarios:Usuario[]=[];
   ngOnInit(): void {
 this.todos();
   }
-   eliminar(id:number){
+   delete(id:number){
     Swal.fire({
       title: 'Eliminar',
       text: "Esta seguro que desea eliminar!",
@@ -29,13 +29,13 @@ this.todos();
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.service.eliminar(id).subscribe(data=>{
+        this.service.delete(id).subscribe(data=>{
           Swal.fire(
             'Eliminado!',
             'El Usuario fue eliminado con exito',
             'success'
           )
-          this.usuarios.filter(u=>u.id==id);
+        // this.usuarios.filter(u=>u.id==id);
           this.todos()
         })
 

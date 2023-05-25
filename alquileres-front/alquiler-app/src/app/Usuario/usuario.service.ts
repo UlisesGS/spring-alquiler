@@ -35,8 +35,12 @@ export class UsuarioService {
  save(usuario:Usuario):Observable<Usuario>{
   return this.http.post<Usuario>(this.url,usuario);
  }
+<<<<<<< HEAD
  
  eliminar(id:number):Observable<void>{
+=======
+ delete(id:number):Observable<void>{
+>>>>>>> 932c9ed05496b812e0c062aadefeb67374546f83
   return this.http.delete<void>(`${this.url}/${id}`);
  }
 
