@@ -43,6 +43,7 @@ public class Usuario {
     @PrePersist
     private void rol(){
         Rol rol = new Rol();
+        rol.setId(1L);
         rol.setNombre("ROLE_USER");
         this.roles.add(rol);
     }
