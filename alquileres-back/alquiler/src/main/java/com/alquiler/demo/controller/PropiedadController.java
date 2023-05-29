@@ -27,6 +27,9 @@ public class PropiedadController {
     @Autowired
     private UsuarioService service;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
 
     @GetMapping
     public ResponseEntity<?> findAll(){
@@ -56,6 +59,7 @@ public class PropiedadController {
 
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody Propiedad propiedad, BindingResult result ){
+<<<<<<< HEAD
         Optional<Usuario> optional = service.findById(propiedad.getUsuario().getId());
         Usuario usuario=null;
         if(optional.isPresent()){
@@ -63,10 +67,25 @@ public class PropiedadController {
         }
         propiedad.setUsuario(usuario);
                 System.out.println(propiedad);
+=======
+
+
+>>>>>>> ulises
         if (result.hasErrors()){
             return validation(result);
         }
 
+<<<<<<< HEAD
+=======
+        Optional<Usuario> usuarioOptional = usuarioService.findById(propiedad.getUsuario().getId());
+        Usuario usuario = null;
+        if (usuarioOptional.isPresent()){
+            usuario = usuarioOptional.get();
+
+        }
+
+        propiedad.setUsuario(usuario);
+>>>>>>> ulises
 
         return ResponseEntity.status(HttpStatus.CREATED).body(propiedadService.save(propiedad));
 
@@ -89,7 +108,7 @@ public class PropiedadController {
             propiedad1.setUbicacion(propiedad.getUbicacion());
             propiedad1.setFoto(propiedad.getFoto());
             propiedad1.setPrecio(propiedad.getPrecio());
-            propiedad1.setListaCliente(propiedad.getListaCliente());
+            /*propiedad1.setListaCliente(propiedad.getListaCliente());*/
 
             return ResponseEntity.status(HttpStatus.CREATED).body(propiedadService.save(propiedad1));
         }
