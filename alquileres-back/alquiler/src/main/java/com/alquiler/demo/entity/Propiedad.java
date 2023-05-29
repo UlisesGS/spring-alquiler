@@ -2,6 +2,8 @@ package com.alquiler.demo.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public class Propiedad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "propietarios")
     private Usuario usuario;
@@ -23,13 +25,16 @@ public class Propiedad {
     @NotBlank
     private String ubicacion;
 
-    @NotBlank
+   /* @NotBlank*/
     private List<String> foto;
 
-    @NotBlank
+    @NotNull
     private Double precio;
 
-    @Column(name = "lista_clientes")
+    /*@Column(name = "lista_clientes")
     @ManyToMany
-    private List<Usuario> listaCliente;
+    private List<Usuario> listaCliente;*/
+
 }
+
+

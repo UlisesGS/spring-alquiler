@@ -32,24 +32,22 @@ export class UsuarioService {
     );
   }
   */
- save(usuario:Usuario):Observable<Usuario>{
+ public save(usuario:Usuario):Observable<Usuario>{
   return this.http.post<Usuario>(this.url,usuario);
  }
-<<<<<<< HEAD
  
- eliminar(id:number):Observable<void>{
-=======
- delete(id:number):Observable<void>{
->>>>>>> 932c9ed05496b812e0c062aadefeb67374546f83
+
+ public delete(id:number):Observable<void>{
   return this.http.delete<void>(`${this.url}/${id}`);
  }
 
- findById(id:number): Observable<Usuario>{
+ public findById(id:number): Observable<Usuario>{
   return this.http.get<Usuario>(`${this.url}/${id}`);
  }
 
 
- update(usuario: Usuario): Observable<Usuario>{
+ public update(usuario: Usuario): Observable<Usuario>{
   return this.http.put<Usuario>(`${this.url}/${usuario.id}`, usuario, {headers: this.header});
  }
-}
+
+ }

@@ -1,8 +1,10 @@
 package com.alquiler.demo.controller;
 
 import com.alquiler.demo.entity.Propiedad;
+import com.alquiler.demo.entity.Usuario;
 import com.alquiler.demo.repository.PropiedadRepository;
 import com.alquiler.demo.service.PropiedadService;
+import com.alquiler.demo.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,9 @@ public class PropiedadController {
 
     @Autowired
     private PropiedadService propiedadService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
 
     @GetMapping
@@ -53,9 +58,19 @@ public class PropiedadController {
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody Propiedad propiedad, BindingResult result ){
 
+
         if (result.hasErrors()){
             return validation(result);
         }
+
+        Optional<Usuario> usuarioOptional = usuarioService.findById(propiedad.getUsuario().getId());
+        Usuario usuario = null;
+        if (usuarioOptional.isPresent()){
+            usuario = usuarioOptional.get();
+
+        }
+
+        propiedad.setUsuario(usuario);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(propiedadService.save(propiedad));
 
@@ -77,7 +92,7 @@ public class PropiedadController {
             propiedad1.setUbicacion(propiedad.getUbicacion());
             propiedad1.setFoto(propiedad.getFoto());
             propiedad1.setPrecio(propiedad.getPrecio());
-            propiedad1.setListaCliente(propiedad.getListaCliente());
+            /*propiedad1.setListaCliente(propiedad.getListaCliente());*/
 
             return ResponseEntity.status(HttpStatus.CREATED).body(propiedadService.save(propiedad1));
         }

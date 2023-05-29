@@ -1,5 +1,6 @@
 package com.alquiler.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -38,11 +39,13 @@ public class Usuario {
     private String foto;
 
     @ManyToMany
+    @JsonIgnoreProperties()
     private List<Rol> roles;
 
     @PrePersist
     private void rol(){
         Rol rol = new Rol();
+        rol.setId(1L);
         rol.setNombre("ROLE_USER");
         this.roles.add(rol);
     }
