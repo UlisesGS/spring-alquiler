@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,17 +31,28 @@ public class Propiedad {
     @NotBlank
     private String ubicacion;
 
+
    // @NotBlank
+
+   /* @NotBlank*/
+
     private List<String> foto;
 
     @NotNull
     private Double precio;
 
-    @Column(name = "lista_clientes")
+    /*@Column(name = "lista_clientes")
     @ManyToMany
+
     private List<Usuario> listaCliente;
 
     public Propiedad() {
 
     }
+
+    private List<Usuario> listaCliente;*/
+
+
 }
+
+

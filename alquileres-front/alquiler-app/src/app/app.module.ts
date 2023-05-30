@@ -8,6 +8,8 @@ import { NavBarComponent } from './componente/nav-bar/nav-bar.component';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { UsuarioFormComponent } from './Usuario/componente/usuario-form/usuario-form.component';
+import { PropiedadListaComponent } from './Propiedad/componente/propiedad-lista/propiedad-lista.component';
+import { PropiedadFormComponent } from './Propiedad/componente/propiedad-form/propiedad-form.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { UsuarioFormComponent } from './Usuario/componente/usuario-form/usuario-
     ListaComponent,
     NavBarComponent,
     UsuarioFormComponent,
+    PropiedadListaComponent,
+    PropiedadFormComponent
 
   ],
   imports: [
