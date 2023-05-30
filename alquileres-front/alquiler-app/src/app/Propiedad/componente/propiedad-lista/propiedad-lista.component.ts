@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 
   export class PropiedadListaComponent implements OnInit{
     propiedades:Propiedad[]=[];
+    propiedadSeleccionada: Propiedad;
 
     constructor(private service:PropiedadService){}
 
@@ -25,6 +26,6 @@ import Swal from "sweetalert2";
           this.propiedades=data;
         })
       }
-      
+
 
   }
