@@ -4,6 +4,7 @@ INSERT INTO usuarios (username,password,email,nombre,apellido,dni,telefono) VALU
 INSERT INTO usuarios (username,password,email,nombre,apellido,dni,telefono) VALUES('Fran', '12345', 'fran@gmail.com','fran','adamo','29788268','2614520055');
 INSERT INTO roles (nombre) VALUES('ROLE_USER');
 INSERT INTO roles (nombre) VALUES('ROLE_ADMIN');
+INSERT INTO roles (nombre) VALUES('ROLE_PROPIETARIO');
 
 
 INSERT INTO propiedades (propietarios,ubicacion,precio) value (1,'Casa de campo', 100);

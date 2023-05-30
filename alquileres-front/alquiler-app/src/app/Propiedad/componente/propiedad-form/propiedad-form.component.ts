@@ -4,7 +4,8 @@ import { Usuario } from 'src/app/Usuario/usuario';
 import { UsuarioService } from 'src/app/Usuario/usuario.service';
 import { PropiedadService } from '../../propiedad.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-propiedad-form',
@@ -16,11 +17,25 @@ export class PropiedadFormComponent implements OnInit {
   titulo:string ="Formulario de Propiedades"
   propiedad:Propiedad= new Propiedad()
   errores:any;
-  constructor(private usuarioService: UsuarioService, private propiedadService:PropiedadService,private ruta:Router){}
+  constructor(private rutaParametro: ActivatedRoute, private usuarioService: UsuarioService, private propiedadService:PropiedadService,private ruta:Router){}
   ngOnInit(): void {
 this.usuarioService.findAll().subscribe(data=>{
   this.usuarios=data;
 })
+this.rutaParametro.paramMap.subscribe(param=>{
+  let id = +param.get('id');
+  if(id){
+    this.propiedadService.findById(id).subscribe(data=>{
+      this.propiedad=data;
+    })
+    this.titulo='Editar Propiedad';
+  }else{
+    this.titulo='Crear Propiedad';
+  }
+})
+
+
+
   }
   comparar(o1:Usuario, o2:Usuario):boolean{
 
@@ -48,8 +63,24 @@ this.propiedadService.save(this.propiedad).subscribe(data=>{
   }
 })
   }
-  update()
-{
+  update(){
+    this.propiedadService.update(this.propiedad).subscribe(data=>{
+      Swal.fire('Actualizado: ', `Propiedad ${this.propiedad.ubicacion} editado con exito`, 'success');
+      this.ruta.navigate(['propiedad/lista'])
 
-}
+    },err=>{
+      if(err.status==400){
+        console.log(err);
+       this.errores=err.error;
+        Swal.fire('Error: ', `Error al Editar el Usuario  el error es ${err.message}`,'error')
+
+      }
+    })
+
+
+  }
+
+
+
+
 }
