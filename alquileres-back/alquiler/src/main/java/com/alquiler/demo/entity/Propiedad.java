@@ -52,7 +52,9 @@ public class Propiedad {
 
     private List<Usuario> listaCliente;*/
 
-
+    public Propiedad() {
+        this.usuario= new Usuario();
+    }
 }
 
 

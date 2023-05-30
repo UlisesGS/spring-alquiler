@@ -59,6 +59,7 @@ public class PropiedadController {
 
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody Propiedad propiedad, BindingResult result ){
+        System.out.println(propiedad);
         if (result.hasErrors()){
             return validation(result);
         }
@@ -68,8 +69,8 @@ public class PropiedadController {
         if(optional.isPresent()){
            usuario = optional.get();
         }
-        propiedad.setUsuario(usuario);
-                System.out.println(propiedad);
+ 
+
 
 
 

@@ -32,6 +32,7 @@ public class Usuario {
         this.roles = roles;
     }
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -17,6 +17,9 @@ export class PropiedadService {
   }
 
   public save(propiedad:Propiedad): Observable<Propiedad>{
+    console.log(propiedad);
+    
+
     return this.http.post<Propiedad>(this.url,propiedad);
   }
 
