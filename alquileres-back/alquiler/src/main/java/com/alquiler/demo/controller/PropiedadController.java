@@ -83,13 +83,19 @@ public class PropiedadController {
         }
 
         if (optional.isPresent()){
+            Usuario usuario= null;
+            Optional<Usuario> optionalUsuario = service.findById(propiedad.getUsuario().getId());
+            if (optionalUsuario.isPresent()){
+                usuario = optionalUsuario.get();
+            }
+
             Propiedad propiedad1 = optional.get();
 
-            propiedad1.setUsuario(propiedad.getUsuario());
+            propiedad1.setUsuario(usuario);
             propiedad1.setUbicacion(propiedad.getUbicacion());
             propiedad1.setFoto(propiedad.getFoto());
             propiedad1.setPrecio(propiedad.getPrecio());
-            propiedad1.setListaCliente(propiedad.getListaCliente());
+           // propiedad1.setListaCliente(propiedad.getListaCliente());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(propiedadService.save(propiedad1));
         }

@@ -22,8 +22,6 @@ public class Propiedad {
 
     @NotNull
     @ManyToOne
-
-
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JoinColumn(name = "propietarios")
     private Usuario usuario;
