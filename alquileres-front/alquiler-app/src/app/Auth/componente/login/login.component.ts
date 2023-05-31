@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
   usuario:Usuario= new Usuario();
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+ console.log('login componente');
+
   }
 
   constructor(private usuarioService: UsuarioService,
@@ -25,13 +26,13 @@ export class LoginComponent implements OnInit {
     this.usuarioService.findByUsernameAndPassword(this.usuario.username, this.usuario.password).subscribe(data =>{
       this.loginService.saveLogin(data);
       this.router.navigate(['/propiedad/lista']);
-      
+
     }
     ,error=>{
       if(error.status==404){
         Swal.fire('Error','Usuario o contraseña incorrectos', 'error');
       }
-      
+
     }
     );
   }

@@ -9,17 +9,16 @@ import {HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { UsuarioFormComponent } from './Usuario/componente/usuario-form/usuario-form.component';
 import { PropiedadListaComponent } from './Propiedad/componente/propiedad-lista/propiedad-lista.component';
-<<<<<<< HEAD
+
 
 import { PropiedadFormComponent } from './Propiedad/componente/propiedad-form/propiedad-form.component';
 
 import { PropiedadDetalleComponent } from './Propiedad/componente/propiedad-detalle/propiedad-detalle.component';
 
-=======
-import { PropiedadFormComponent } from './Propiedad/componente/propiedad-form/propiedad-form.component';
-import { PropiedadDetalleComponent } from './Propiedad/componente/propiedad-detalle/propiedad-detalle.component';
+
+
 import { LoginComponent } from './Auth/componente/login/login.component';
->>>>>>> ulises
+
 
 @NgModule({
   declarations: [
@@ -28,17 +27,17 @@ import { LoginComponent } from './Auth/componente/login/login.component';
     NavBarComponent,
     UsuarioFormComponent,
     PropiedadListaComponent,
-<<<<<<< HEAD
+
 
     PropiedadFormComponent,
 
     PropiedadDetalleComponent,
 
-=======
+
     PropiedadFormComponent,
     PropiedadDetalleComponent,
     LoginComponent
->>>>>>> ulises
+
 
   ],
   imports: [
