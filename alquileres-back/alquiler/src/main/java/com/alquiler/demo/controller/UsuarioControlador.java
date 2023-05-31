@@ -42,9 +42,9 @@ public class UsuarioControlador {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/nombre/{username}")
-    public ResponseEntity<?> findByUsername(@PathVariable String username) {
-        Optional<Usuario> o = service.findByUsername(username);
+    @GetMapping("/nombre/{username}/{password}")
+    public ResponseEntity<?> findByUsername(@PathVariable String username, @PathVariable String password) {
+        Optional<Usuario> o = service.findByUsernameAndPassword(username, password);
         if (o.isPresent()) {
             return ResponseEntity.ok().body(o.get());
         }
