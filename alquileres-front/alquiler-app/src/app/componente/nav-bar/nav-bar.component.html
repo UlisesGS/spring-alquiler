@@ -14,16 +14,27 @@
           <a class="nav-link" routerLink="/usuarios">Usuario</a>
         </li>
         <li class="nav-item">
+<<<<<<< HEAD
 
 
 
           <a class="nav-link" routerLink="/propiedad/lista">Propiedades</a>
 
+=======
+          <a class="nav-link" routerLink="/propiedad/lista">Propiedades</a>
+>>>>>>> ulises
         </li>
       </ul>
-      <form>
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-      </form>
+      <ul class="navbar-nav navbar-right">
+
+
+        
+
+        <li><a type="submit" routerLink="/login" class="btn btn-outline-dark" *ngIf="!loginService.isLogin()">Iniciar sesion</a></li>
+        <li><a type="submit" routerLink="/login" class="btn btn-outline-dark" *ngIf="loginService.isLogin()" (click)="logaut()">Cerrar sesion</a></li>
+
+
+      </ul>
     </div>
   </div>
 </nav>

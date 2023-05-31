@@ -54,4 +54,8 @@ export class UsuarioService {
   return this.http.put<Usuario>(`${this.url}/${usuario.id}`, usuario, {headers: this.header});
  }
 
+ public findByUsernameAndPassword(username: String, password: String): Observable<any>{
+    return this.http.get<any>(`${this.url}/nombre/${username}/${password}`)
+ }
+
  }
