@@ -70,13 +70,6 @@ public class PropiedadController {
            usuario = optional.get();
         }
  
-
-
-
-
-
-
-
         propiedad.setUsuario(usuario);
 
 
