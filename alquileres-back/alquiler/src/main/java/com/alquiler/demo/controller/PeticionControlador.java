@@ -66,6 +66,7 @@ public class PeticionControlador {
     public ResponseEntity<?>deleteById(@PathVariable Long id){
         Optional<Peticion>optional = peticionService.findById(id);
         if (optional.isPresent()){
+            peticionService.deleteById(id);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
