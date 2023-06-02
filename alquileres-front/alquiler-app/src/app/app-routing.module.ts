@@ -6,6 +6,7 @@ import {  PropiedadListaComponent } from './Propiedad/componente/propiedad-lista
 import { PropiedadDetalleComponent } from './Propiedad/componente/propiedad-detalle/propiedad-detalle.component';
 import { PropiedadFormComponent } from './Propiedad/componente/propiedad-form/propiedad-form.component';
 import { LoginComponent } from './Auth/componente/login/login.component';
+import { AlquilerFormComponent } from './Alquiler/componente/alquiler-form/alquiler-form.component';
 
 
 
@@ -17,7 +18,9 @@ const routes: Routes = [
   {path:'propiedad/form',component:PropiedadFormComponent},
   {path:'propiedad/form/:id',component:PropiedadFormComponent},
   {path:'propiedad/detalle/:id',component:PropiedadDetalleComponent},
-  {path:'login',component:LoginComponent}
+  {path:'login',component:LoginComponent},
+  {path:'alquiler/form', component:AlquilerFormComponent},
+  {path:'alquiler/form/:id', component:AlquilerFormComponent}
 
 ];
 

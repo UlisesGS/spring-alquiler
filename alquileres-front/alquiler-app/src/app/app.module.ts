@@ -11,6 +11,7 @@ import { PropiedadListaComponent } from './Propiedad/componente/propiedad-lista/
 import { PropiedadFormComponent } from './Propiedad/componente/propiedad-form/propiedad-form.component';
 import { PropiedadDetalleComponent } from './Propiedad/componente/propiedad-detalle/propiedad-detalle.component';
 import { LoginComponent } from './Auth/componente/login/login.component';
+import { AlquilerFormComponent } from './Alquiler/componente/alquiler-form/alquiler-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { LoginComponent } from './Auth/componente/login/login.component';
     PropiedadFormComponent,
     PropiedadDetalleComponent,
     LoginComponent,
-
+    AlquilerFormComponent,
   ],
   imports: [
     BrowserModule,
