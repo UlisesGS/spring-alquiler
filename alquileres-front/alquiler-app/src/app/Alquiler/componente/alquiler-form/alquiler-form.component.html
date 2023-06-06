@@ -15,7 +15,7 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="inputEmail">Email</label>
-                <input name="email"  [(ngModel)]="peticion.cliente.email" type="email" class="form-control" id="inputEmail" disabled="true">
+                <input name="email"  [(ngModel)]="alquiler?.peticion?.cliente.email" type="email" class="form-control" id="inputEmail" disabled="true">
               </div>
             </div>
 
@@ -23,7 +23,7 @@
           </div>
           <div class="form-group">
             <label for="inputSubject">Propiedad</label>
-            <input name="propiedad" type="text" class="form-control" id="inputSubject"  [(ngModel)]="peticion.propiedad.ubicacion" disabled="true">
+            <input name="propiedad" type="text" class="form-control" id="inputSubject"  [(ngModel)]="alquiler?.peticion?.propiedad.ubicacion" disabled="true">
           </div>
 
           <div class="row">
@@ -33,13 +33,20 @@
                 <input name="fechaEntrada" [(ngModel)]="alquiler.fechaEntrada" type="date" class="form-control" id="inputPhone" required>
 
               </div>
+              <div class="alert alert-danger" *ngIf="errores?.fechaEntrada">
+                {{ errores.fechaEntrada }}
+              </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="inputPhone">Salida</label>
                 <input name="fechaSalida" [(ngModel)]="alquiler.fechaSalida" type="date" class="form-control" id="inputPhone" required>
               </div>
+              <div class="alert alert-danger" *ngIf="errores?.fechaSalida">
+                {{ errores.fechaSalida }}
+              </div>
             </div>
+
           </div>
 
           <button (click)="alquilarSave()"  class="btn btn-primary m-2"><i class="fa fa-paper-plane"></i> Send</button>
