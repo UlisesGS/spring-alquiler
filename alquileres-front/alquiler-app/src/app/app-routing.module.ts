@@ -10,6 +10,7 @@ import { AlquilerFormComponent } from './Alquiler/componente/alquiler-form/alqui
 
 
 
+
 const routes: Routes = [
   {path:'usuarios',component:ListaComponent},
   {path:'usuarios/form',component:UsuarioFormComponent},

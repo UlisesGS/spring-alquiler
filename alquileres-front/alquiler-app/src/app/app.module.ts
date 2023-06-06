@@ -13,6 +13,7 @@ import { PropiedadDetalleComponent } from './Propiedad/componente/propiedad-deta
 import { LoginComponent } from './Auth/componente/login/login.component';
 import { AlquilerFormComponent } from './Alquiler/componente/alquiler-form/alquiler-form.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
