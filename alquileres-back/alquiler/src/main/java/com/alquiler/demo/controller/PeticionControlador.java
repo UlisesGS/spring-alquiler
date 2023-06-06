@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin ("*")
 @RequestMapping("/peticion")
 public class PeticionControlador {
     @Autowired

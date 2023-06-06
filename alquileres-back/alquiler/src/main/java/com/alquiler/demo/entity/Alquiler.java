@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
+
 public class Alquiler {
 
 
@@ -26,7 +27,10 @@ public class Alquiler {
     private List<String> foto;/*OPCIONAL*/
 
     @Temporal(TemporalType.DATE)
-    private Date calendario;
+    private Date fechaEntrada;
+    @Temporal(TemporalType.DATE)
+    private Date fechaSalida;
+
 
 
 }
