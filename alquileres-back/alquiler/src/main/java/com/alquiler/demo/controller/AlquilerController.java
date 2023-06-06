@@ -44,6 +44,14 @@ public class AlquilerController {
 
         return ResponseEntity.notFound().build();
     }
+    @GetMapping("/propietario/{idPropietario}")
+    public ResponseEntity<?>findByPropietario(@PathVariable Long idPropietario){
+        List<Alquiler>alquilerList =alquilerService.findByPropietario(idPropietario);
+        if(alquilerList.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok().body(alquilerList);
+    }
 
 
     @PostMapping

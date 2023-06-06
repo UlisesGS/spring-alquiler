@@ -25,6 +25,11 @@ public class AlquilerSeviceImpl implements AlquilerService{
     }
 
     @Override
+    public List<Alquiler> findByPropietario(Long idPropietario) {
+        return alquilerRepository.registroAlquiler(idPropietario);
+    }
+
+    @Override
     public Alquiler save(Alquiler alquiler) {
         alquiler.setAceptarPeticion(false);
         return alquilerRepository.save(alquiler);

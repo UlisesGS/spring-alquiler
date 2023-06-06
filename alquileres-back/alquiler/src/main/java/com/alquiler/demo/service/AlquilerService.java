@@ -10,6 +10,7 @@ public interface AlquilerService {
     public List<Alquiler> findAll();
 
     public Optional<Alquiler> findById(Long id);
+    public List<Alquiler>findByPropietario(Long idPropietario);
 
     public Alquiler save(Alquiler alquiler);
 
