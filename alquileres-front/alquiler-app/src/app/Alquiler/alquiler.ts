@@ -6,6 +6,7 @@ export class Alquiler {
     aceptarPeticion:boolean;
     reseña:string;
     foto:string[];
-    calendario:string;
-  
+    fechaEntrada:string;
+    fechaSalida:string;
+
   }
