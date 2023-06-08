@@ -22,15 +22,18 @@ public class Alquiler {
     @OneToOne
     private Peticion peticion;
 
+    @Column(name = "aceptar_peticion")
     private Boolean aceptarPeticion;
 
     private String reseña;/*OPCIONAL*/
 
     private List<String> foto;/*OPCIONAL*/
     @NotNull
+    @Column(name = "fecha_entrada")
     @Temporal(TemporalType.DATE)
     private Date fechaEntrada;
     @NotNull
+    @Column(name = "fecha_salida")
     @Temporal(TemporalType.DATE)
     private Date fechaSalida;
 

@@ -64,13 +64,13 @@ public class PropiedadController {
             return validation(result);
         }
 
-        Optional<Usuario> optional = service.findById(propiedad.getUsuario().getId());
+        Optional<Usuario> optional = service.findById(propiedad.getPropietario().getId());
         Usuario usuario=null;
         if(optional.isPresent()){
            usuario = optional.get();
         }
  
-        propiedad.setUsuario(usuario);
+        propiedad.setPropietario(usuario);
 
 
         return ResponseEntity.status(HttpStatus.CREATED).body(propiedadService.save(propiedad));
@@ -89,14 +89,14 @@ public class PropiedadController {
 
         if (optional.isPresent()){
             Usuario usuario= null;
-            Optional<Usuario> optionalUsuario = service.findById(propiedad.getUsuario().getId());
+            Optional<Usuario> optionalUsuario = service.findById(propiedad.getPropietario().getId());
             if (optionalUsuario.isPresent()){
                 usuario = optionalUsuario.get();
             }
 
             Propiedad propiedad1 = optional.get();
 
-            propiedad1.setUsuario(usuario);
+            propiedad1.setPropietario(usuario);
             propiedad1.setUbicacion(propiedad.getUbicacion());
             propiedad1.setFoto(propiedad.getFoto());
             propiedad1.setPrecio(propiedad.getPrecio());

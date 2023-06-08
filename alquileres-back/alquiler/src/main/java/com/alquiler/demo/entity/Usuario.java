@@ -52,6 +52,8 @@ public class Usuario {
     private String password;
     private String foto;
 
+    /*DOBLE REGISTRO DE SESION Y AHI SE LE AGREGA CLIENTE O PROPIETARIO*/
+
     @ManyToMany
     @JsonIgnoreProperties()
     private List<Rol> roles;
