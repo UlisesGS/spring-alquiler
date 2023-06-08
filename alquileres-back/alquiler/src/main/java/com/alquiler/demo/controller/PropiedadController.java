@@ -1,8 +1,10 @@
 package com.alquiler.demo.controller;
 
 import com.alquiler.demo.entity.Propiedad;
+import com.alquiler.demo.entity.Usuario;
 import com.alquiler.demo.repository.PropiedadRepository;
 import com.alquiler.demo.service.PropiedadService;
+import com.alquiler.demo.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,11 @@ public class PropiedadController {
 
     @Autowired
     private PropiedadService propiedadService;
+    @Autowired
+    private UsuarioService service;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
 
     @GetMapping
@@ -52,10 +59,19 @@ public class PropiedadController {
 
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody Propiedad propiedad, BindingResult result ){
-
+        System.out.println(propiedad);
         if (result.hasErrors()){
             return validation(result);
         }
+
+        Optional<Usuario> optional = service.findById(propiedad.getPropietario().getId());
+        Usuario usuario=null;
+        if(optional.isPresent()){
+           usuario = optional.get();
+        }
+ 
+        propiedad.setPropietario(usuario);
+
 
         return ResponseEntity.status(HttpStatus.CREATED).body(propiedadService.save(propiedad));
 
@@ -66,18 +82,29 @@ public class PropiedadController {
     public ResponseEntity<?> update(@PathVariable Long id, @Valid @RequestBody Propiedad propiedad, BindingResult result){
         Optional<Propiedad> optional = propiedadService.findById(id);
 
+
         if (result.hasErrors()){
             return validation(result);
         }
 
         if (optional.isPresent()){
+            Usuario usuario= null;
+            Optional<Usuario> optionalUsuario = service.findById(propiedad.getPropietario().getId());
+            if (optionalUsuario.isPresent()){
+                usuario = optionalUsuario.get();
+            }
+
             Propiedad propiedad1 = optional.get();
 
-            propiedad1.setUsuario(propiedad.getUsuario());
+            propiedad1.setPropietario(usuario);
             propiedad1.setUbicacion(propiedad.getUbicacion());
             propiedad1.setFoto(propiedad.getFoto());
             propiedad1.setPrecio(propiedad.getPrecio());
-            propiedad1.setListaCliente(propiedad.getListaCliente());
+
+           // propiedad1.setListaCliente(propiedad.getListaCliente());
+
+            /*propiedad1.setListaCliente(propiedad.getListaCliente());*/
+
 
             return ResponseEntity.status(HttpStatus.CREATED).body(propiedadService.save(propiedad1));
         }

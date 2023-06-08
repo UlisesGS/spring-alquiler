@@ -1,0 +1,60 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor="let err of errores">
+      {{ err }}
+  </li>
+</ul>
+<div class="card bg-dark border-danger text-white my-4">
+
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+      <form #clienteForm ="ngForm">
+
+          <div class="row mb-3">
+              <label for="ubicacion" class="col-form-label col-sm-2">Ubicacion</label>
+              <div class="col-sm-4">
+                  <input type="text" name="ubicacion" class="form-control" [(ngModel)]="propiedad.ubicacion">
+                  <div class="alert alert-danger" *ngIf="errores?.ubicacion">
+                      {{ errores.ubicacion }}
+                    </div>
+              </div>
+          </div>
+
+          <div class="row mb-3">
+              <label for="precio" class="col-form-label col-sm-2">precio</label>
+              <div class="col-sm-4">
+                  <input type="number" class="form-control" [(ngModel)]="propiedad.precio" name="precio">
+                  <div class="alert alert-danger" *ngIf="errores?.precio">
+                      {{ errores.precio }}
+                    </div>
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="region" class="col-form-label col-sm-2">Usuario</label>
+            <div class="col-sm-6">
+              <select [compareWith]="comparar" class="form-control" [(ngModel)]="propiedad.usuario" name="usuario" style="width:500px;">
+                <option [ngValue]="undefined">--- selecionar Un Usuario ---</option>
+                <option *ngFor="let usuario of usuarios" [ngValue]="usuario">{{usuario.nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+          <div class="form-group">
+              <div class="col-sm-6">
+
+                  <button class="btn btn-primary" (click)="save()" *ngIf="!propiedad.id">Crear</button>
+
+                  <button class="btn btn-primary" (click)="update()" *ngIf="propiedad.id">Editar</button>
+
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+
