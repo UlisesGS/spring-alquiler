@@ -1,0 +1,38 @@
+<div class="alert alert-primary m-4" *ngIf="alquileres==null ">
+no tienes peticiones pendiente
+</div>
+<table class="table" *ngIf="alquileres?.length>0">
+
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Ubicacion</th>
+      <th scope="col">Fecha Entreda</th>
+      <th scope="col">Fecha Salida</th>
+
+      <th scope="col">Ver mas</th>
+      <th scope="col">Rechazar</th>
+      <th scope="col">Aceptar</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let alquiler of alquileres">
+      <td>{{alquiler.id}}</td>
+      <td>{{alquiler.peticion.propiedad.ubicacion}}</td>
+      <td>{{alquiler.fechaEntrada}}</td>
+      <td>{{alquiler.fechaSalida}}</td>
+      <td>
+        <button class="btn btn-success btn-sm">ver mas</button>
+
+
+      </td>
+      <td>
+        <button class="btn btn-danger btn-sm">Rechazar</button>
+      </td>
+      <td>
+        <button class="btn btn-primary btn-sm">Aceptar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

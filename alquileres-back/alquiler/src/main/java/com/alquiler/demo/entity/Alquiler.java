@@ -2,6 +2,7 @@ package com.alquiler.demo.entity;
 
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -28,9 +29,11 @@ public class Alquiler {
 
     private List<String> foto;/*OPCIONAL*/
     @NotNull
+    @Future(message = "Debe indicar una fecha posterior a la de hoy")
     @Temporal(TemporalType.DATE)
     private Date fechaEntrada;
     @NotNull
+    @Future(message = "Debe indicar una fecha posterior a la de hoy")
     @Temporal(TemporalType.DATE)
     private Date fechaSalida;
 
