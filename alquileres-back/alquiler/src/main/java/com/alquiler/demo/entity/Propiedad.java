@@ -26,7 +26,7 @@ public class Propiedad {
     @ManyToOne
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JoinColumn(name = "propietarios")
-    private Usuario usuario;
+    private Usuario propietario;
 
     @NotBlank
     private String ubicacion;
@@ -41,19 +41,13 @@ public class Propiedad {
     @NotNull
     private Double precio;
 
-    /*@Column(name = "lista_clientes")
+   /* @Column(name = "lista_clientes")
     @ManyToMany
-
-    private List<Usuario> listaCliente;
-
-    public Propiedad() {
-
-    }
-
     private List<Usuario> listaCliente;*/
 
+
     public Propiedad() {
-        this.usuario= new Usuario();
+        this.propietario= new Usuario();
     }
 }
 

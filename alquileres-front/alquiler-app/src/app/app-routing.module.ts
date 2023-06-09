@@ -12,6 +12,7 @@ import { PeticionesComponent } from './Propietario/componente/peticiones/peticio
 
 
 
+
 const routes: Routes = [
   {path:'usuarios',component:ListaComponent},
   {path:'usuarios/form',component:UsuarioFormComponent},

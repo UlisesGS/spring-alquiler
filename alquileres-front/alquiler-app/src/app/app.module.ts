@@ -15,6 +15,7 @@ import { AlquilerFormComponent } from './Alquiler/componente/alquiler-form/alqui
 import { PropietarioAlquileresComponent } from './Propietario/componente/propietario-alquileres/propietario-alquileres.component';
 import { PeticionesComponent } from './Propietario/componente/peticiones/peticiones.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
