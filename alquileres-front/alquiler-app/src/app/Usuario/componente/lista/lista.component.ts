@@ -15,6 +15,9 @@ usuarios:Usuario[]=[];
 
   constructor(private service:UsuarioService){}
   ngOnInit(): void {
+
+
+
 this.todos();
   }
    delete(id:number){
