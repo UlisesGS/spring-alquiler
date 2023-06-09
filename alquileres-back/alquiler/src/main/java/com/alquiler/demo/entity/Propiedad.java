@@ -41,9 +41,9 @@ public class Propiedad {
     @NotNull
     private Double precio;
 
-    @Column(name = "lista_clientes")
+   /* @Column(name = "lista_clientes")
     @ManyToMany
-    private List<Usuario> listaCliente;
+    private List<Usuario> listaCliente;*/
 
 
     public Propiedad() {
