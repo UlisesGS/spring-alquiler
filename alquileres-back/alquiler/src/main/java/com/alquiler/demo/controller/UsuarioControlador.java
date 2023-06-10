@@ -115,7 +115,7 @@ public class UsuarioControlador {
     }
 
 
-    @PostMapping("cliente/upload")
+    @PostMapping("foto/upload")
     public ResponseEntity<?> upload(@RequestParam("archivo")MultipartFile archivo , @RequestParam("id") Long id){
         Map<String,Object> respuesta = new HashMap<>();
 
