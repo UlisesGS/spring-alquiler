@@ -3,6 +3,8 @@ import { Usuario } from '../../usuario';
 import { UsuarioService } from '../../usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { FotoService } from 'src/app/Foto/foto.service';
+import { HttpEventType } from '@angular/common/http';
 
 
 @Component({
@@ -15,10 +17,14 @@ export class UsuarioFormComponent implements OnInit{
   titulo:string="Creacion de usuario";
   public usuario: Usuario=new Usuario();
   public errores: any;
+  private fotoSeleccionada: File;
+  public progreso: number = 0;
 
   constructor(private usuarioService: UsuarioService,
     private router: Router,
-    private activatedRoute: ActivatedRoute){
+    private activatedRoute: ActivatedRoute,
+    private fotoService: FotoService,
+    ){
 
   }
 
@@ -77,4 +83,5 @@ export class UsuarioFormComponent implements OnInit{
       }
     )
   }
+
 }

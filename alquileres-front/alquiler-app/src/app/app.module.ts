@@ -14,6 +14,8 @@ import { LoginComponent } from './Auth/componente/login/login.component';
 import { AlquilerFormComponent } from './Alquiler/componente/alquiler-form/alquiler-form.component';
 import { PropietarioAlquileresComponent } from './Propietario/componente/propietario-alquileres/propietario-alquileres.component';
 import { PeticionesComponent } from './Propietario/componente/peticiones/peticiones.component';
+import { FotoComponent } from './Foto/componente/foto.component';
+import { UsuarioDetalleComponent } from './Usuario/componente/usuario-detalle/usuario-detalle.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { PeticionesComponent } from './Propietario/componente/peticiones/peticio
     AlquilerFormComponent,
     PropietarioAlquileresComponent,
     PeticionesComponent,
+    FotoComponent,
+    UsuarioDetalleComponent
   ],
   imports: [
     BrowserModule,

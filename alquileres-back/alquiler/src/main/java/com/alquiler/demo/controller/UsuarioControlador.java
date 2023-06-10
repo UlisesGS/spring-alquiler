@@ -2,8 +2,11 @@ package com.alquiler.demo.controller;
 
 import com.alquiler.demo.entity.Usuario;
 import com.alquiler.demo.service.FotoService;
+import com.alquiler.demo.service.FotoServiceImpl;
 import com.alquiler.demo.service.UsuarioService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -28,6 +31,8 @@ public class UsuarioControlador {
 
     @Autowired
     private FotoService fotoService;
+
+    private final Logger log = LoggerFactory.getLogger(UsuarioControlador.class);
 
 
     private ResponseEntity<?> validation(BindingResult result) {
@@ -101,7 +106,7 @@ public class UsuarioControlador {
     public ResponseEntity<?>delete(@PathVariable Long id){
         Optional<Usuario>o = service.findById(id);
         if (o.isPresent()){
-            fotoService.delete(o.get().getFoto());
+            fotoService.eliminar(o.get().getFoto());
             service.deleteById(id);
 
             return ResponseEntity.noContent().build();
@@ -110,28 +115,30 @@ public class UsuarioControlador {
     }
 
 
-    @PostMapping("/foto/upload")
-    public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id){
+    @PostMapping("cliente/upload")
+    public ResponseEntity<?> upload(@RequestParam("archivo")MultipartFile archivo , @RequestParam("id") Long id){
         Map<String,Object> respuesta = new HashMap<>();
 
         Optional<Usuario> usuarioOptional = service.findById(id);
+
         Usuario usuario = usuarioOptional.get();
 
         if (!archivo.isEmpty()){
             String nombreArchivo = null;
             try {
-                nombreArchivo=fotoService.copy(archivo);
+                nombreArchivo=fotoService.copiar(archivo);
             } catch (IOException e) {
+
                 respuesta.put("error",e.getMessage()+ " ");
                 respuesta.put("mensaje", "error al cargar la foto");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
             }
             String nombreFotoAnterior = usuario.getFoto();
-            fotoService.delete(nombreFotoAnterior);
+            fotoService.eliminar(nombreFotoAnterior);
 
             usuario.setFoto(nombreArchivo);
             service.save(usuario);
-            respuesta.put("usuario", usuario);
+            respuesta.put("cliente", usuario);
             respuesta.put("mensaje", "Ha subido correctamente la imagen"+ nombreArchivo );
 
         }
@@ -141,22 +148,4 @@ public class UsuarioControlador {
         return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
     }
 
-
-    @GetMapping("/uploads/img/{nombreFoto:.+}")
-    public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){
-
-        Resource recurso = null;
-
-        try {
-            recurso = fotoService.upload(nombreFoto);
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-
-        HttpHeaders cabecera = new HttpHeaders();
-
-        cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() +  "\"");
-
-        return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
-    }
 }

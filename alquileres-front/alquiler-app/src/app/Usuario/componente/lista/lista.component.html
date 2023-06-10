@@ -1,4 +1,4 @@
-
+<app-usuario-detalle *ngIf="usuarioSeleccionado" [usuario] ="usuarioSeleccionado"></app-usuario-detalle>
 <h2>{{titulo}}</h2>
 <button class="btn btn-primary my-2" [routerLink] = "['/usuarios/form']">Crear</button>
 <table class="table">
@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let usuario of usuarios">
-      <td>{{usuario.id}}</td>
+      <td><button type="button" (click)="abrirModal(usuario)" class="btn btn-success btn-sm">{{ usuario.id }}</button></td>
       <td>{{usuario.username}}</td>
       <td>{{usuario.nombre}}</td>
       <td>{{usuario.apellido}}</td>
