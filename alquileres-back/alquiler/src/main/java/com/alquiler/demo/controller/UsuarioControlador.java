@@ -148,4 +148,25 @@ public class UsuarioControlador {
         return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
     }
 
+<<<<<<< HEAD
+=======
+
+    @GetMapping("/uploads/img/{nombreFoto:.+}")
+    public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){
+
+        Resource recurso = null;
+
+        try {
+            recurso = fotoService.upload(nombreFoto);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        /*tomame el ambio*/
+        HttpHeaders cabecera = new HttpHeaders();
+
+        cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() +  "\"");
+
+        return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
+    }
+>>>>>>> bb78b0e104893c8a579f278bea8a3c9b1562ccf8
 }

@@ -41,8 +41,6 @@ public class Alquiler {
     @Temporal(TemporalType.DATE)
     private Date fechaSalida;
 
-    /*private Date caca;*/
-
 
 
 }
