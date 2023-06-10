@@ -10,8 +10,8 @@ import java.nio.file.Path;
 
 public interface FotoService {
 
-    public Resource cargar(String nombreFoto) throws MalformedURLException;
-    public String copiar(MultipartFile archivo)throws IOException;
-    public boolean eliminar (String nombreFoto);
-    public Path getpath(String nombreFoto);
+    public Resource upload(String nombreFoto) throws MalformedURLException;
+    public String copy(MultipartFile archivo)throws IOException;
+    public boolean delete (String nombreFoto);
+    public Path getPath(String nombreFoto);
 }

@@ -106,7 +106,7 @@ public class UsuarioControlador {
     public ResponseEntity<?>delete(@PathVariable Long id){
         Optional<Usuario>o = service.findById(id);
         if (o.isPresent()){
-            fotoService.eliminar(o.get().getFoto());
+            fotoService.delete(o.get().getFoto());
             service.deleteById(id);
 
             return ResponseEntity.noContent().build();
@@ -126,7 +126,7 @@ public class UsuarioControlador {
         if (!archivo.isEmpty()){
             String nombreArchivo = null;
             try {
-                nombreArchivo=fotoService.copiar(archivo);
+                nombreArchivo=fotoService.copy(archivo);
             } catch (IOException e) {
 
                 respuesta.put("error",e.getMessage()+ " ");
@@ -134,7 +134,7 @@ public class UsuarioControlador {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
             }
             String nombreFotoAnterior = usuario.getFoto();
-            fotoService.eliminar(nombreFotoAnterior);
+            fotoService.delete(nombreFotoAnterior);
 
             usuario.setFoto(nombreArchivo);
             service.save(usuario);
@@ -148,8 +148,6 @@ public class UsuarioControlador {
         return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
     }
 
-<<<<<<< HEAD
-=======
 
     @GetMapping("/uploads/img/{nombreFoto:.+}")
     public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){
@@ -161,12 +159,12 @@ public class UsuarioControlador {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-        /*tomame el ambio*/
+
         HttpHeaders cabecera = new HttpHeaders();
 
         cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() +  "\"");
 
         return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
     }
->>>>>>> bb78b0e104893c8a579f278bea8a3c9b1562ccf8
+
 }

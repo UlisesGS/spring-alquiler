@@ -20,8 +20,8 @@ public class FotoServiceImpl implements FotoService {
 
     private final Logger log = LoggerFactory.getLogger(FotoServiceImpl.class);
     @Override
-    public Resource cargar(String nombreFoto) throws MalformedURLException {
-        Path rutaArchivo = getpath(nombreFoto);
+    public Resource upload(String nombreFoto) throws MalformedURLException {
+        Path rutaArchivo = getPath(nombreFoto);
         Resource recurso = new UrlResource(rutaArchivo.toUri());
         log.info(rutaArchivo.toString());
 
@@ -36,9 +36,9 @@ public class FotoServiceImpl implements FotoService {
 
 
     @Override
-    public String copiar(MultipartFile archivo) throws IOException {
+    public String copy(MultipartFile archivo) throws IOException {
         String nombreArchivo = UUID.randomUUID().toString() + archivo.getOriginalFilename().replace(" ", "");
-        Path rutaArchivo = getpath(nombreArchivo);
+        Path rutaArchivo = getPath(nombreArchivo);
 
        /* boolean rutaExiste = Files.exists(rutaArchivo);
         if (rutaExiste) {
@@ -54,7 +54,7 @@ public class FotoServiceImpl implements FotoService {
     }
 
     @Override
-    public boolean eliminar(String nombreFoto) {
+    public boolean delete(String nombreFoto) {
         if(nombreFoto!=null && nombreFoto.length()>0){
             Path rutaFotoAnterior = Paths.get("uploads").resolve(nombreFoto).toAbsolutePath();
             File archivoFotoAnterior = rutaFotoAnterior.toFile();
@@ -67,7 +67,7 @@ public class FotoServiceImpl implements FotoService {
     }
 
     @Override
-    public Path getpath(String nombreFoto) {
+    public Path getPath(String nombreFoto) {
         Path rutaArchivo = Paths.get("uploads").resolve(nombreFoto).toAbsolutePath();
         return rutaArchivo;
     }
