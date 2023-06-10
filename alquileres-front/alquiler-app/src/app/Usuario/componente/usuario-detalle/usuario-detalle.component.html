@@ -7,11 +7,11 @@
               <button (click)="cerrarModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              
+
                 <div class="container">
                     <div class="row">
                         <div class="col-sm">
-        
+
                             <ul *ngIf="usuario" class="list-group mb-3">
                                 <li class="list-group-item active">{{usuario.nombre}}</li>
                                 <li class="list-group-item">{{usuario.apellido}}</li>
@@ -19,27 +19,27 @@
                                 <li class="list-group-item">{{usuario.dni}}</li>
                                 <li class="list-group-item">{{usuario.telefono}}</li>
                             </ul>
-        
+
                             <div class="input-group">
                                 <input (change)="seleccionarFoto($event)" type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                 <button (click)="subirFoto()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir foto</button>
                               </div>
-        
+
                               <div>
                                 <div *ngIf="progreso > 0" class="progress">
                                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [ngStyle]="{width: progreso}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                               </div>
-        
+
                         </div>
-        
-        
+
+
                         <div class="col-sm">
-                            <img *ngIf="cliente?.foto" src="http://localhost:8080/api/uploads/img/{{cliente.foto}}" alt="{{cliente.foto}}" class="img-thumbnail rounded">
+                            <img *ngIf="usuario?.foto" src="http://localhost:8080/usuario/uploads/img/{{usuario.foto}}" alt="{{usuario.foto}}" class="img-thumbnail rounded">
                         </div>
                     </div>
                 </div>
-    
+
             </div>
             <div class="modal-footer">
               <button (click)="cerrarModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
