@@ -164,6 +164,7 @@ public class PropiedadController {
             //  List<String>listaFoto = alquiler.getFoto();
             //  fotoService.delete(nombreFotoAnterior);
             // alquiler.setFoto(nombreArchivo);
+            System.out.println(nombreArchivo.toString());
             propiedad.addFoto(nombreArchivo);
             // alquiler.getPeticion().getPropiedad().addFoto(nombreArchivo);
 

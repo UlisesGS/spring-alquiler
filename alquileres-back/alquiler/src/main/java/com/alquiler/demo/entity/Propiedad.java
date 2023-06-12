@@ -37,7 +37,7 @@ public class Propiedad {
 
    /* @NotBlank*/
 
-    private List<String> foto;
+    private List<String> foto = new ArrayList<>();
 
     @NotNull
     private Double precio;
@@ -48,12 +48,12 @@ public class Propiedad {
 
 
     public Propiedad() {
-        this.foto = new ArrayList<>();
+        //this.foto = new ArrayList();
         this.propietario= new Usuario();
     }
 
-    public void addFoto(String foto){
-        this.foto.add(foto);
+    public void addFoto(String nombre){
+       this.foto.add(nombre);
     }
 }
 
