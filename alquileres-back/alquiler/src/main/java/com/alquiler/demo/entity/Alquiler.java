@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +42,11 @@ public class Alquiler {
     @Temporal(TemporalType.DATE)
     private Date fechaSalida;
 
+    public Alquiler() {
+        this.foto = new ArrayList<>();
+    }
+    public void addFoto(String foto){
+        this.foto.add(foto);
 
-
+    }
 }

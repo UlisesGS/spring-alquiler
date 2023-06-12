@@ -13,9 +13,5 @@ public interface AlquilerRepository extends JpaRepository<Alquiler, Long> {
 
     @Query ("select a from Alquiler a where a.peticion.propiedad.propietario.id = ?1 and aceptarPeticion = false")
     public List<Alquiler> aceptarPeticion(Long id);
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 9f83aed47dc210ba4ed8f852923be9a67496937d
 }

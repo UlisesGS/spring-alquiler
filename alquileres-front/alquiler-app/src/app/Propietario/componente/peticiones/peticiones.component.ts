@@ -17,6 +17,8 @@ export class PeticionesComponent implements OnInit {
 this.propietario= JSON.parse(localStorage.getItem('usuario'))
 this.propietarioService.findByPropietario(this.propietario.id).subscribe(data=>{
   this.alquileres=data;
+  console.log(data);
+
 })
   }
 

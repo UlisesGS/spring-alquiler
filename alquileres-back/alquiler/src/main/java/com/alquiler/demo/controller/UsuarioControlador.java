@@ -138,7 +138,7 @@ public class UsuarioControlador {
 
             usuario.setFoto(nombreArchivo);
             service.save(usuario);
-            respuesta.put("cliente", usuario);
+            respuesta.put("usuario", usuario);
             respuesta.put("mensaje", "Ha subido correctamente la imagen"+ nombreArchivo );
 
         }

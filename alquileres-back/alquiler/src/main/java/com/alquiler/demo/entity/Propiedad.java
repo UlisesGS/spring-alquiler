@@ -11,6 +11,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -47,7 +48,12 @@ public class Propiedad {
 
 
     public Propiedad() {
+        this.foto = new ArrayList<>();
         this.propietario= new Usuario();
+    }
+
+    public void addFoto(String foto){
+        this.foto.add(foto);
     }
 }
 

@@ -1,17 +1,24 @@
 package com.alquiler.demo.controller;
 
+import com.alquiler.demo.entity.Alquiler;
 import com.alquiler.demo.entity.Propiedad;
 import com.alquiler.demo.entity.Usuario;
 import com.alquiler.demo.repository.PropiedadRepository;
+import com.alquiler.demo.service.FotoService;
 import com.alquiler.demo.service.PropiedadService;
 import com.alquiler.demo.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +36,8 @@ public class PropiedadController {
 
     @Autowired
     private UsuarioService usuarioService;
-
+    @Autowired
+    private FotoService fotoService;
 
     @GetMapping
     public ResponseEntity<?> findAll(){
@@ -134,4 +142,58 @@ public class PropiedadController {
 
         return ResponseEntity.badRequest().body(errors);
     }
+    @PostMapping("img/upload")
+    public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id) {
+        Map<String, Object> respuesta = new HashMap<>();
+
+        Optional<Propiedad> propiedadOptional = propiedadService.findById(id);
+
+        Propiedad propiedad = propiedadOptional.get();
+
+        if (!archivo.isEmpty()) {
+            String nombreArchivo = null;
+            try {
+                nombreArchivo = fotoService.copy(archivo);
+            } catch (IOException e) {
+
+                respuesta.put("error", e.getMessage() + " ");
+                respuesta.put("mensaje", "error al cargar la foto");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
+            }
+            //String nombreFotoAnterior = alquiler.getFoto();
+            //  List<String>listaFoto = alquiler.getFoto();
+            //  fotoService.delete(nombreFotoAnterior);
+            // alquiler.setFoto(nombreArchivo);
+            propiedad.addFoto(nombreArchivo);
+            // alquiler.getPeticion().getPropiedad().addFoto(nombreArchivo);
+
+            propiedadService.save(propiedad);
+            respuesta.put("propiedad", propiedad);
+            respuesta.put("mensaje", "Ha subido correctamente la imagen" + nombreArchivo);
+
+        }
+
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
+    }
+
+
+    @GetMapping("/uploads/img/{nombreFoto:.+}")
+    public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto) {
+
+        Resource recurso = null;
+
+        try {
+            recurso = fotoService.upload(nombreFoto);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+
+        HttpHeaders cabecera = new HttpHeaders();
+
+        cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"");
+
+        return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
+    }
+
 }

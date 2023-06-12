@@ -9,4 +9,5 @@ export class Alquiler {
     fechaEntrada:string;
     fechaSalida:string;
 
+
   }

@@ -12,13 +12,13 @@ export class FotoService {
   constructor(private http: HttpClient, private router: Router) { }
 
   subirFoto(archivo: File, id): Observable<HttpEvent<{}>>{
-    
+
     let formData = new FormData();
                   /*VA EL MISMO NOMBRE QUE LE PONEMOS EN EL BACK*/
     formData.append("archivo", archivo);
     formData.append("id", id);
 
-    const req = new HttpRequest('POST', `${this.urlEndPoint}/foto/upload`, formData, {
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/cliente/upload`, formData, {
       reportProgress: true
     });
 
