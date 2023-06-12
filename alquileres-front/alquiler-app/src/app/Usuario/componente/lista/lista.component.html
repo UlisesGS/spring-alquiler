@@ -1,4 +1,4 @@
-
+<app-usuario-detalle *ngIf="usuarioSeleccionado" [usuario] ="usuarioSeleccionado"></app-usuario-detalle>
 <h2>{{titulo}}</h2>
 <button class="btn btn-primary my-2" [routerLink] = "['/usuarios/form']">Crear</button>
 <table class="table">
@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let usuario of usuarios">
-      <td>{{usuario.id}}</td>
+      <td><button type="button" (click)="abrirModal(usuario)" class="btn btn-success btn-sm">{{ usuario.id }}</button></td>
       <td>{{usuario.username}}</td>
       <td>{{usuario.nombre}}</td>
       <td>{{usuario.apellido}}</td>
@@ -33,3 +33,42 @@
     </tr>
   </tbody>
 </table>
+
+<!--
+<div class="card border-light m-5">
+<div class="card-body">
+<table class="table table-bordered table-striped table-danger "  *ngFor="let usuario of usuarios">
+  <thead>
+    <tr>
+
+      <th >Username</th>
+      <th >Nombre</th>
+      <th >Apellido</th>
+      <th >telefono</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr >
+
+      <td>{{usuario.username}}</td>
+      <td>{{usuario.nombre}}</td>
+      <td>{{usuario.apellido}}</td>
+      <td>{{usuario.telefono}}</td>
+
+      <td>
+        <button class="btn btn-primary btn-sm" [routerLink] = "['/usuarios/form', usuario.id]">Editar</button>
+      </td>
+      <td>
+        <button (click)="delete(usuario.id)" class="btn btn-danger btn-sm">Eliminar</button>
+      </td>
+
+
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+-->

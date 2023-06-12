@@ -11,10 +11,7 @@ import java.nio.file.Path;
 public interface FotoService {
 
     public Resource upload(String nombreFoto) throws MalformedURLException;
-
-    public String copy(MultipartFile archivo) throws IOException;
-
-    public boolean delete(String nombreFoto);
-
+    public String copy(MultipartFile archivo)throws IOException;
+    public boolean delete (String nombreFoto);
     public Path getPath(String nombreFoto);
 }

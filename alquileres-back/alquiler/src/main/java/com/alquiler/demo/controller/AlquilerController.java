@@ -2,17 +2,18 @@ package com.alquiler.demo.controller;
 
 import com.alquiler.demo.entity.Alquiler;
 import com.alquiler.demo.service.AlquilerService;
+import com.alquiler.demo.service.FotoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -21,6 +22,10 @@ public class AlquilerController {
 
     @Autowired
     private AlquilerService alquilerService;
+
+    @Autowired
+    private FotoService fotoService;
+
 
     @GetMapping
     public ResponseEntity<?> findAll(){
@@ -98,6 +103,46 @@ public class AlquilerController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping
+    public ResponseEntity<?> upload(@RequestParam("archivo")MultipartFile archivo, @RequestParam("id") Long id){
+        Map<String, Object> respuesta = new HashMap<>();
+
+        Optional<Alquiler> alquilerOptional = alquilerService.findById(id);
+
+        Alquiler alquiler = alquilerOptional.get();
+
+        if (!archivo.isEmpty()){
+            String nombreArchivo = null;
+            try {
+                nombreArchivo = fotoService.copy(archivo);
+            }catch (IOException e){
+                respuesta.put("error", e.getMessage()+" ");
+                respuesta.put("mensaje", "error al cargar la foto del alquiler");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
+            }
+
+            /*PARA ACTUALIZAR FOTOS
+            * List<String> listaActualizada = lista.stream()
+            .map(dato -> dato.equals(datoAntiguo) ? datoNuevo : dato)
+            .collect(Collectors.toList());
+
+            List<String>nombreFotoAnterior=new ArrayList<>();
+
+
+            String nombreFotoAnterior = alquiler.getFoto();
+            fotoService.delete(nombreFotoAnterior);*/
+
+
+
+            alquiler.getFoto().add(nombreArchivo);
+            respuesta.put("alquiler", alquiler);
+            respuesta.put("mensaje", "Ha subido correctamente la imagen"+ nombreArchivo );
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
     }
 
 

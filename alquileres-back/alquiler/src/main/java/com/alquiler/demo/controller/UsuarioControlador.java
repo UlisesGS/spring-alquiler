@@ -2,8 +2,11 @@ package com.alquiler.demo.controller;
 
 import com.alquiler.demo.entity.Usuario;
 import com.alquiler.demo.service.FotoService;
+import com.alquiler.demo.service.FotoServiceImpl;
 import com.alquiler.demo.service.UsuarioService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -28,6 +31,8 @@ public class UsuarioControlador {
 
     @Autowired
     private FotoService fotoService;
+
+    private final Logger log = LoggerFactory.getLogger(UsuarioControlador.class);
 
 
     private ResponseEntity<?> validation(BindingResult result) {
@@ -110,11 +115,12 @@ public class UsuarioControlador {
     }
 
 
-    @PostMapping("/foto/upload")
-    public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id){
+    @PostMapping("cliente/upload")
+    public ResponseEntity<?> upload(@RequestParam("archivo")MultipartFile archivo , @RequestParam("id") Long id){
         Map<String,Object> respuesta = new HashMap<>();
 
         Optional<Usuario> usuarioOptional = service.findById(id);
+
         Usuario usuario = usuarioOptional.get();
 
         if (!archivo.isEmpty()){
@@ -122,8 +128,9 @@ public class UsuarioControlador {
             try {
                 nombreArchivo=fotoService.copy(archivo);
             } catch (IOException e) {
+
                 respuesta.put("error",e.getMessage()+ " ");
-                respuesta.put("mensaje", "error al cargar la foto");
+                respuesta.put("mensaje", "error al cargar la foto de usuario");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
             }
             String nombreFotoAnterior = usuario.getFoto();
@@ -131,7 +138,7 @@ public class UsuarioControlador {
 
             usuario.setFoto(nombreArchivo);
             service.save(usuario);
-            respuesta.put("usuario", usuario);
+            respuesta.put("cliente", usuario);
             respuesta.put("mensaje", "Ha subido correctamente la imagen"+ nombreArchivo );
 
         }
@@ -159,4 +166,5 @@ public class UsuarioControlador {
 
         return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
     }
+
 }

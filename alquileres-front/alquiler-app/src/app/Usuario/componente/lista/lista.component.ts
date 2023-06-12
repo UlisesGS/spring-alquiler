@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../usuario';
 import { UsuarioService } from '../../usuario.service';
 import Swal from 'sweetalert2';
+import { ModalService } from 'src/app/Foto/modal.service';
 
 @Component({
   selector: 'app-lista',
@@ -11,10 +12,16 @@ import Swal from 'sweetalert2';
 export class ListaComponent implements OnInit {
 titulo:string='Lista Usuarios';
 usuarios:Usuario[]=[];
+usuarioSeleccionado:Usuario;
 
 
-  constructor(private service:UsuarioService){}
+  constructor(private service:UsuarioService,
+    private modalService: ModalService){}
+    
   ngOnInit(): void {
+
+
+
 this.todos();
   }
    delete(id:number){
@@ -47,6 +54,11 @@ public todos(){
   this.service.findAll().subscribe(data=>{
     this.usuarios=data;
   })
+}
+
+abrirModal(usuario: Usuario){
+  this.usuarioSeleccionado = usuario;
+  this.modalService.abrirModal();
 }
 
 }

@@ -13,6 +13,9 @@ import { PropiedadDetalleComponent } from './Propiedad/componente/propiedad-deta
 import { LoginComponent } from './Auth/componente/login/login.component';
 import { AlquilerFormComponent } from './Alquiler/componente/alquiler-form/alquiler-form.component';
 import { PropietarioAlquileresComponent } from './Propietario/componente/propietario-alquileres/propietario-alquileres.component';
+import { PeticionesComponent } from './Propietario/componente/peticiones/peticiones.component';
+import { FotoComponent } from './Foto/componente/foto.component';
+import { UsuarioDetalleComponent } from './Usuario/componente/usuario-detalle/usuario-detalle.component';
 
 
 @NgModule({
@@ -29,6 +32,9 @@ import { PropietarioAlquileresComponent } from './Propietario/componente/propiet
     LoginComponent,
     AlquilerFormComponent,
     PropietarioAlquileresComponent,
+    PeticionesComponent,
+    FotoComponent,
+    UsuarioDetalleComponent
   ],
   imports: [
     BrowserModule,
