@@ -3,7 +3,10 @@ package com.alquiler.demo.controller;
 import com.alquiler.demo.entity.Alquiler;
 import com.alquiler.demo.service.AlquilerService;
 import com.alquiler.demo.service.FotoService;
+import com.alquiler.demo.service.FotoServiceImpl;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/alquiler")
 public class AlquilerController {
+
+    private final Logger log = LoggerFactory.getLogger(AlquilerController.class);
 
     @Autowired
     private AlquilerService alquilerService;
@@ -106,13 +110,17 @@ public class AlquilerController {
     }
 
 
-    @PostMapping
+    @PostMapping("img/upload")
     public ResponseEntity<?> upload(@RequestParam("archivo")MultipartFile archivo, @RequestParam("id") Long id){
         Map<String, Object> respuesta = new HashMap<>();
 
         Optional<Alquiler> alquilerOptional = alquilerService.findById(id);
 
         Alquiler alquiler = alquilerOptional.get();
+
+        alquiler.getFoto().forEach(e -> {
+            log.info(e.toString());
+        });
 
         if (!archivo.isEmpty()){
             String nombreArchivo = null;
@@ -135,9 +143,14 @@ public class AlquilerController {
             String nombreFotoAnterior = alquiler.getFoto();
             fotoService.delete(nombreFotoAnterior);*/
 
+            List<String> nuevaFoto = alquiler.getFoto();
+
+            log.info(nuevaFoto.toString());
+
+            nuevaFoto.add(nombreArchivo);
+            alquiler.setFoto(nuevaFoto);
 
 
-            alquiler.getFoto().add(nombreArchivo);
             respuesta.put("alquiler", alquiler);
             respuesta.put("mensaje", "Ha subido correctamente la imagen"+ nombreArchivo );
         }

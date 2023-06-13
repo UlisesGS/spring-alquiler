@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,10 @@ import java.util.List;
 public class Alquiler {
 
 
+    public Alquiler() {
+        this.foto = new ArrayList<>();
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +32,7 @@ public class Alquiler {
     private Boolean aceptarPeticion;
 
     private String reseña;/*OPCIONAL*/
+
 
     private List<String> foto;/*OPCIONAL*/
 
