@@ -36,8 +36,15 @@ public class Alquiler {
 
     private List<String> foto;/*OPCIONAL*/
 
+<<<<<<< HEAD
 
     @NotNull
+=======
+<<<<<<< HEAD
+=======
+    @NotNull
+>>>>>>> fe733dddf1a2bfeaaac2d5ae29e5cf027e95cbc0
+>>>>>>> df8d0d0384c89a91abfe9126297ef1a29be4b407
     @Future(message = "Debe indicar una fecha posterior a la de hoy")
     @Column(name = "fecha_entrada")
     @Temporal(TemporalType.DATE)
@@ -50,6 +57,11 @@ public class Alquiler {
     @Temporal(TemporalType.DATE)
     private Date fechaSalida;
 
+    public Alquiler() {
+        this.foto = new ArrayList<>();
+    }
+    public void addFoto(String foto){
+        this.foto.add(foto);
 
-
+    }
 }

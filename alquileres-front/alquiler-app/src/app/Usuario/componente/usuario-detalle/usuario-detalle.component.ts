@@ -47,12 +47,16 @@ export class UsuarioDetalleComponent {
         this.progreso = Math.round((event.loaded/event.total)*100);
       }else if(event.type === HttpEventType.Response){
         let response: any = event.body;
+        console.log(response);
+
         this.usuario = response.usuario as Usuario;
       }
 
       //this.cliente = cliente;
-      Swal.fire('La foto se ha subido completamente!', `La foto se ha subido con exito: ${this.usuario.foto}`, 'success');
+    //
     });
+
+    Swal.fire('La foto se ha subido completamente!', `La foto se ha subido con exito: ${this.usuario.foto}`, 'success');
   }
 }
 
