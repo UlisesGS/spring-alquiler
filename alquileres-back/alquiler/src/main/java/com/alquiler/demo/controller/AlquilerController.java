@@ -1,15 +1,9 @@
 package com.alquiler.demo.controller;
 
 import com.alquiler.demo.entity.Alquiler;
-import com.alquiler.demo.entity.Propiedad;
-import com.alquiler.demo.entity.Usuario;
 import com.alquiler.demo.service.AlquilerService;
 import com.alquiler.demo.service.FotoService;
-<<<<<<< HEAD
-import com.alquiler.demo.service.FotoServiceImpl;
-=======
 import com.alquiler.demo.service.PropiedadService;
->>>>>>> df8d0d0384c89a91abfe9126297ef1a29be4b407
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,15 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-<<<<<<< HEAD
-import java.util.*;
-=======
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
->>>>>>> df8d0d0384c89a91abfe9126297ef1a29be4b407
 
 @RestController
 @CrossOrigin("*")
@@ -46,9 +36,6 @@ public class AlquilerController {
     private FotoService fotoService;
     @Autowired
     private PropiedadService propiedadService;
-
-    @Autowired
-    private FotoService fotoService;
 
 
     @GetMapping
@@ -130,62 +117,7 @@ public class AlquilerController {
         return ResponseEntity.notFound().build();
     }
 
-
-<<<<<<< HEAD
-    @PostMapping("img/upload")
-    public ResponseEntity<?> upload(@RequestParam("archivo")MultipartFile archivo, @RequestParam("id") Long id){
-        Map<String, Object> respuesta = new HashMap<>();
-
-        Optional<Alquiler> alquilerOptional = alquilerService.findById(id);
-
-        Alquiler alquiler = alquilerOptional.get();
-
-        alquiler.getFoto().forEach(e -> {
-            log.info(e.toString());
-        });
-
-        if (!archivo.isEmpty()){
-            String nombreArchivo = null;
-            try {
-                nombreArchivo = fotoService.copy(archivo);
-            }catch (IOException e){
-                respuesta.put("error", e.getMessage()+" ");
-                respuesta.put("mensaje", "error al cargar la foto del alquiler");
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
-            }
-
-            /*PARA ACTUALIZAR FOTOS
-            * List<String> listaActualizada = lista.stream()
-            .map(dato -> dato.equals(datoAntiguo) ? datoNuevo : dato)
-            .collect(Collectors.toList());
-
-            List<String>nombreFotoAnterior=new ArrayList<>();
-
-
-            String nombreFotoAnterior = alquiler.getFoto();
-            fotoService.delete(nombreFotoAnterior);*/
-
-            List<String> nuevaFoto = alquiler.getFoto();
-
-            log.info(nuevaFoto.toString());
-
-            nuevaFoto.add(nombreArchivo);
-            alquiler.setFoto(nuevaFoto);
-
-
-            respuesta.put("alquiler", alquiler);
-            respuesta.put("mensaje", "Ha subido correctamente la imagen"+ nombreArchivo );
-        }
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
-    }
-
-
     private ResponseEntity<?> validation(BindingResult result){
-=======
-    private ResponseEntity<?> validation(BindingResult result) {
->>>>>>> df8d0d0384c89a91abfe9126297ef1a29be4b407
-
         Map<String, Object> errores = new HashMap<>();
 
         result.getFieldErrors().forEach(err -> {
