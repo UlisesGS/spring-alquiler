@@ -19,10 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
@@ -106,7 +103,7 @@ public class PropiedadController {
 
             propiedad1.setPropietario(usuario);
             propiedad1.setUbicacion(propiedad.getUbicacion());
-            propiedad1.setFoto(propiedad.getFoto());
+            propiedad1.setFotos(propiedad.getFotos());
             propiedad1.setPrecio(propiedad.getPrecio());
 
            // propiedad1.setListaCliente(propiedad.getListaCliente());
@@ -148,7 +145,7 @@ public class PropiedadController {
 
         Optional<Propiedad> propiedadOptional = propiedadService.findById(id);
 
-        Propiedad propiedad = propiedadOptional.get();
+        Propiedad  propiedad= propiedadOptional.get();
 
         if (!archivo.isEmpty()) {
             String nombreArchivo = null;
@@ -161,11 +158,19 @@ public class PropiedadController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
             }
             //String nombreFotoAnterior = alquiler.getFoto();
-            //  List<String>listaFoto = alquiler.getFoto();
+       //List<String>listaFoto =new ArrayList<>();
+           // System.out.println(propiedad.getFoto());
+         //   if(!propiedad.getFoto().isEmpty()){
+       //         listaFoto= propiedad.getFoto();
+     //       }
+
+            propiedad.addFoto(nombreArchivo);
             //  fotoService.delete(nombreFotoAnterior);
             // alquiler.setFoto(nombreArchivo);
             System.out.println(nombreArchivo.toString());
-            propiedad.addFoto(nombreArchivo);
+            System.out.println(propiedad.toString());
+           // propiedad.setFoto(listaFoto);
+            //propiedad.addFoto(nombreArchivo);
             // alquiler.getPeticion().getPropiedad().addFoto(nombreArchivo);
 
             propiedadService.save(propiedad);
