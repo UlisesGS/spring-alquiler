@@ -130,7 +130,7 @@ public class UsuarioControlador {
             } catch (IOException e) {
 
                 respuesta.put("error",e.getMessage()+ " ");
-                respuesta.put("mensaje", "error al cargar la foto");
+                respuesta.put("mensaje", "error al cargar la foto de usuario");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
             }
             String nombreFotoAnterior = usuario.getFoto();

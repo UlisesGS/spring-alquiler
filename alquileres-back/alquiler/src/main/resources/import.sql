@@ -7,8 +7,8 @@ INSERT INTO roles (nombre) VALUES('ROLE_ADMIN');
 INSERT INTO roles (nombre) VALUES('ROLE_PROPIETARIO');
 
 
-INSERT INTO propiedades (propietarios,ubicacion,precio) value (1,'Casa de campo', 100);
-INSERT INTO propiedades (propietarios,ubicacion,precio) value (2,'Casa Quinta', 222.20);
+INSERT INTO propiedades (propietarios,ubicacion,precio) value ('Casa de campo', 100);
+INSERT INTO propiedades (propietarios,ubicacion,precio) value ('Casa Quinta', 222.20);
 
 INSERT INTO usuarios_roles (usuario_id,roles_id) VALUES(1,1);
 INSERT INTO usuarios_roles (usuario_id,roles_id) VALUES(2,2);

@@ -1,12 +1,12 @@
 package com.alquiler.demo.controller;
 
 import com.alquiler.demo.entity.Alquiler;
-import com.alquiler.demo.entity.Propiedad;
-import com.alquiler.demo.entity.Usuario;
 import com.alquiler.demo.service.AlquilerService;
 import com.alquiler.demo.service.FotoService;
 import com.alquiler.demo.service.PropiedadService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -28,12 +28,15 @@ import java.util.Optional;
 @RequestMapping("/alquiler")
 public class AlquilerController {
 
+    private final Logger log = LoggerFactory.getLogger(AlquilerController.class);
+
     @Autowired
     private AlquilerService alquilerService;
     @Autowired
     private FotoService fotoService;
     @Autowired
     private PropiedadService propiedadService;
+
 
     @GetMapping
     public ResponseEntity<?> findAll() {
@@ -114,9 +117,7 @@ public class AlquilerController {
         return ResponseEntity.notFound().build();
     }
 
-
-    private ResponseEntity<?> validation(BindingResult result) {
-
+    private ResponseEntity<?> validation(BindingResult result){
         Map<String, Object> errores = new HashMap<>();
 
         result.getFieldErrors().forEach(err -> {

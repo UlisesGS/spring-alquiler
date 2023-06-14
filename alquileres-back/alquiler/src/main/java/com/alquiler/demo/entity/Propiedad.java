@@ -1,5 +1,4 @@
 package com.alquiler.demo.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -19,6 +18,7 @@ import java.util.List;
 @Table(name = "propiedades")
 public class Propiedad {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,22 +33,22 @@ public class Propiedad {
     private String ubicacion;
 
 
-   // @NotBlank
 
-   /* @NotBlank*/
 
+<<<<<<< HEAD
     private List<String> fotos ;
+=======
+    private List<String> fotos;
+>>>>>>> a9784d3704f6912f7ee2b0cc386a1d9fd94910dc
 
     @NotNull
     private Double precio;
 
-   /* @Column(name = "lista_clientes")
-    @ManyToMany
-    private List<Usuario> listaCliente;*/
 
 
     public Propiedad() {
         this.fotos = new ArrayList<>();
+<<<<<<< HEAD
     //    this.propietario= new Usuario();
     }
 
@@ -56,6 +56,19 @@ public class Propiedad {
         System.out.println(nombre);
 
         this.fotos.add(nombre);
+=======
+    }
+
+
+
+    public void addFotosNull(String foto){
+        this.fotos = new ArrayList<>();
+        this.fotos.add(foto);
+    }
+
+    public void addFotos(String foto){
+        this.fotos.add(foto);
+>>>>>>> a9784d3704f6912f7ee2b0cc386a1d9fd94910dc
     }
 }
 

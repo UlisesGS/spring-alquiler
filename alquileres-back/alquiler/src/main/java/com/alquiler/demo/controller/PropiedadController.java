@@ -8,6 +8,8 @@ import com.alquiler.demo.service.FotoService;
 import com.alquiler.demo.service.PropiedadService;
 import com.alquiler.demo.service.UsuarioService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -25,6 +27,8 @@ import java.util.*;
 @CrossOrigin("*")
 @RequestMapping("/propiedad")
 public class PropiedadController {
+
+    private final Logger log = LoggerFactory.getLogger(PropiedadController.class);
 
     @Autowired
     private PropiedadService propiedadService;
@@ -139,6 +143,8 @@ public class PropiedadController {
 
         return ResponseEntity.badRequest().body(errors);
     }
+
+
     @PostMapping("img/upload")
     public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id) {
         Map<String, Object> respuesta = new HashMap<>();
@@ -157,6 +163,7 @@ public class PropiedadController {
                 respuesta.put("mensaje", "error al cargar la foto");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
             }
+<<<<<<< HEAD
             //String nombreFotoAnterior = alquiler.getFoto();
        //List<String>listaFoto =new ArrayList<>();
            // System.out.println(propiedad.getFoto());
@@ -172,6 +179,19 @@ public class PropiedadController {
            // propiedad.setFoto(listaFoto);
             //propiedad.addFoto(nombreArchivo);
             // alquiler.getPeticion().getPropiedad().addFoto(nombreArchivo);
+=======
+
+
+
+            if (propiedad.getFotos()==null){
+                propiedad.addFotosNull(nombreArchivo);
+            }else {
+                propiedad.addFotos(nombreArchivo);
+            }
+
+
+
+>>>>>>> a9784d3704f6912f7ee2b0cc386a1d9fd94910dc
 
             propiedadService.save(propiedad);
             respuesta.put("propiedad", propiedad);
