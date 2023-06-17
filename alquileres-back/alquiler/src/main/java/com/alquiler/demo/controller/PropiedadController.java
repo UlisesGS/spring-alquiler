@@ -66,6 +66,16 @@ public class PropiedadController {
     }
 
 
+    @GetMapping("/propietario/{idPropietario}")
+    public ResponseEntity<?> buscarPropiedad(@PathVariable Long idPropietario) {
+        List<Propiedad> propiedadList = propiedadService.buscarPropiedad(idPropietario);
+        if (propiedadList.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok().body(propiedadList);
+    }
+
+
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody Propiedad propiedad, BindingResult result ){
         System.out.println(propiedad);

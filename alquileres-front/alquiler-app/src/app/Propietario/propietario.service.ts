@@ -9,7 +9,9 @@ export class PropietarioService {
   url:string= 'http://localhost:8080/alquiler';
   constructor(private http:HttpClient) { }
   public findByPropietario(id:number):Observable<any>{
-    return this.http.get<any>(this.url);
+    return this.http.get<any>(`${this.url}/${id}`);
   }
+
+  
 
 }

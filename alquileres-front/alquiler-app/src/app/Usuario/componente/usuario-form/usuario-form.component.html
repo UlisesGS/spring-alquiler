@@ -1,4 +1,4 @@
-
+<!-- 
 <ul class="alert alert-danger" *ngIf="errores?.length > 0">
     <li *ngFor="let err of errores">
         {{ err }}
@@ -97,7 +97,7 @@
             </div>
         </form>
     </div>
-</div>
+</div> -->
 
 
 <!-- 
@@ -217,3 +217,28 @@
 
             </div>
  -->
+
+ <form>
+    <h2>Pregunta 1:</h2>
+    <p>¿Te gusta el chocolate?</p>
+    <label>
+      <input type="radio" name="pregunta1" value="si"> Sí
+    </label>
+    <label>
+      <input type="radio" name="pregunta1" value="no"> No
+    </label>
+  
+    <h2>Pregunta 2:</h2>
+    <p>¿Has viajado al extranjero?</p>
+    <label>
+      <input type="radio" name="pregunta2" value="si"> Sí
+    </label>
+    <label>
+      <input type="radio" name="pregunta2" value="no"> No
+    </label>
+  
+    <!-- Agrega más preguntas aquí -->
+  
+    <br><br>
+    <input type="submit" value="Enviar">
+  </form>

@@ -16,4 +16,6 @@ public interface PropiedadService {
     public Propiedad save(Propiedad propiedad);
 
     public void deleteById(Long id);
+
+    public List<Propiedad> buscarPropiedad(Long id);
 }

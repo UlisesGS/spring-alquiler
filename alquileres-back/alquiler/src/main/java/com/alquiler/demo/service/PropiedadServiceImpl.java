@@ -33,4 +33,9 @@ public class PropiedadServiceImpl implements PropiedadService{
     public void deleteById(Long id) {
         propiedadRepository.deleteById(id);
     }
+
+    @Override
+    public List<Propiedad> buscarPropiedad(Long id) {
+        return propiedadRepository.buscarPropiedad(id);
+    }
 }

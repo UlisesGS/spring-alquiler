@@ -34,4 +34,8 @@ export class PropiedadService {
   public update(propiedad:Propiedad): Observable<Propiedad>{
     return this.http.put<Propiedad>(`${this.url}/${propiedad.id}`, propiedad, {headers: this.header});
   }
+
+  public buscarPropiedad(id:number):Observable<any>{
+    return this.http.get<any>(`${this.url}`+'/propietario'+`/${id}`);
+  }
 }
