@@ -33,12 +33,12 @@ public class Alquiler {
 
     private List<String> foto;/*OPCIONAL*/
 
-    @NotNull
-<<<<<<< HEAD
 
-=======
+
+
+
     @NotNull
->>>>>>> a9784d3704f6912f7ee2b0cc386a1d9fd94910dc
+
     @Future(message = "Debe indicar una fecha posterior a la de hoy")
     @Column(name = "fecha_entrada")
     @Temporal(TemporalType.DATE)

@@ -163,23 +163,8 @@ public class PropiedadController {
                 respuesta.put("mensaje", "error al cargar la foto");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(respuesta);
             }
-<<<<<<< HEAD
-            //String nombreFotoAnterior = alquiler.getFoto();
-       //List<String>listaFoto =new ArrayList<>();
-           // System.out.println(propiedad.getFoto());
-         //   if(!propiedad.getFoto().isEmpty()){
-       //         listaFoto= propiedad.getFoto();
-     //       }
 
-            propiedad.addFoto(nombreArchivo);
-            //  fotoService.delete(nombreFotoAnterior);
-            // alquiler.setFoto(nombreArchivo);
-            System.out.println(nombreArchivo.toString());
-            System.out.println(propiedad.toString());
-           // propiedad.setFoto(listaFoto);
-            //propiedad.addFoto(nombreArchivo);
-            // alquiler.getPeticion().getPropiedad().addFoto(nombreArchivo);
-=======
+
 
 
 
@@ -191,7 +176,7 @@ public class PropiedadController {
 
 
 
->>>>>>> a9784d3704f6912f7ee2b0cc386a1d9fd94910dc
+
 
             propiedadService.save(propiedad);
             respuesta.put("propiedad", propiedad);
